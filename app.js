@@ -2,7 +2,7 @@
 
 const pokeContainer = document.querySelector(`#container`);
 // Number of Pokemon (aka Objects) using the first 150 Pokemon in the PokeAPI
-const numbOfPokemon = 150;
+const numbOfPokemon = 151;
 
 // The createPokeCard function creates a new card (aka section element) and adds the new card to the DOM inside of the div with the id of "container"
 function createPokeCard (pokemon) {
@@ -28,3 +28,13 @@ async function getPokemonData(id){
     console.log(pokemonData.data.name);
     createPokeCard(pokemonData);
 }
+
+// The getPokemon function loops through all the pokemon IDs and runs/executes the getPokemonData function for each ID
+// Note: Using async/await on this function because the code in the getPokemonData function is asynchronous (there is an axios request in that function)
+async function getPokemon(i){
+    for(i=1; i < numbOfPokemon; i++){
+        await getPokemonData(i);
+    }
+};
+// Running/Executing the getPokemon function which runs/executes the getPokemon function each time through the loop
+getPokemon();
